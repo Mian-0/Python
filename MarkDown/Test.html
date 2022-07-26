@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Test.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="content">Content</h1>
+<p><a href="#heading-1">1- Headings</a><br>
+<a href="#2--block-of-words">2- Block of words</a><br>
+<a href="#3--line-breaks">3- line breaks</a><br>
+<a href="#heading-4">4- combine two things</a><br>
+<a href="#5--face-of-text">5- Face of text</a><br>
+<a href="#6--bullet-point-lists">6- Bullet points/lists</a><br>
+<a href="#7--line-breaks-or-page-breaks">7- line braks or page breaks</a><br>
+<a href="#8--links-and-hyperlinks">8- Links and Hyper links </a><br>
+<a href="#9--images-and-figures-with-links">9- Images and Figures</a><br>
+<a href="#10--adding-code-or-code-block">10- Adding code or code block</a><br>
+<a href="#11--adding-tables">11- Adding Tables</a></p>
+<h1 id="heading-1">Heading 1</h1>
+<p>How to give headings in markdown files?</p>
+<h2 id="heading-2">Heading 2</h2>
+<h3 id="heading-3">Heading 3</h3>
+<h4 id="heading-4">Heading 4</h4>
+<h1 id="2--block-of-words">2- Block of words</h1>
+<p>THis is a normal text in Markdown.</p>
+<blockquote>
+<p>This is a block of special text</p>
+<p>THis is a second line</p>
+</blockquote>
+<h1 id="3--line-breaks">3- Line Breaks</h1>
+<p>THis is a 40 days long course Data Science with python Aka Python_ka_chila_with_baba_ammar.<br>
+THis is a second lline.</p>
+<blockquote>
+<h2 id="heading-2">Heading 2</h2>
+</blockquote>
+<h1 id="5--face-of-text">5- Face of text</h1>
+<p><strong>Bold</strong></p>
+<p><em>Italic</em></p>
+<p><em><strong>Blod and Italic</strong></em></p>
+<p>Or you can use these symbols
+_(Underscore)</p>
+<p><strong>Bold</strong></p>
+<p><em>Italic</em></p>
+<h1 id="6--bullet-point-lists">6- Bullet point/ Lists</h1>
+<ul>
+<li>Day-1</li>
+<li>Day-2</li>
+<li>Day-3</li>
+<li>Day-4</li>
+<li>Day-5
+<ul>
+<li>Day-5a
+<ul>
+<li>Sub list (Anything )</li>
+</ul>
+</li>
+<li>Day-5b</li>
+</ul>
+</li>
+<li>Day-6</li>
+<li>Day-7</li>
+</ul>
+<blockquote>
+<p><strong>using * or +</strong></p>
+</blockquote>
+<blockquote>
+<p>Numbering of lists</p>
+</blockquote>
+<ol>
+<li>Day1</li>
+<li>Day2</li>
+<li>Day3</li>
+<li>Day4</li>
+<li>Day5
+<ol>
+<li>day5a</li>
+<li>day5b</li>
+</ol>
+</li>
+<li>Day6</li>
+<li>Day7</li>
+<li>Day8</li>
+</ol>
+<h1 id="7--line-breaks-or-page-breaks">7- Line breaks or page breaks</h1>
+<p>This is page 1.</p>
+<hr>
+<hr>
+<hr>
+<p>This is page 2.</p>
+<h1 id="8--links-and-hyperlinks">8- Links and HyperLinks</h1>
+<p><a href="https://www.youtube.com/playlist?list=PL9XvIvvVL50HVsu-Ao8NBr0UJSO8O6lBI">https://www.youtube.com/playlist?list=PL9XvIvvVL50HVsu-Ao8NBr0UJSO8O6lBI</a></p>
+<p><a href="https://www.youtube.com/playlist?list=PL9XvIvvVL50HVsu-Ao8NBr0UJSO8O6lBI">The playlist of python ka chilla is here</a></p>
+<p>This whole course is <a href="https://www.youtube.com/playlist?list=PL9XvIvvVL50HVsu-Ao8NBr0UJSO8O6lBI">here</a>.</p>
+<h1 id="9--images-and-figures-with-links">9- Images and Figures with links</h1>
+<p>To join this course please scan the following QR code and join the telegram group:</p>
+<p><a href="QR.png">QR</a></p>
+<p>Online Picture:
+<img src="data:image/png;base64,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" alt="Codanics"></p>
+<h1 id="10--adding-code-or-code-block">10- Adding code or code block</h1>
+<p>to print a string use print(&quot;Codanics&quot;)
+YEH ERROR A RAHA HAI(command 'python.execInTerminal-icon' not found)</p>
+<h1 id="11--adding-tables">11- adding tables</h1>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Species</th>
+<th style="text-align:center">petal_lenght</th>
+<th style="text-align:center">sepal_lenght</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">virginica</td>
+<td style="text-align:center">18.2</td>
+<td style="text-align:center">19.2</td>
+</tr>
+<tr>
+<td style="text-align:center">sentosa</td>
+<td style="text-align:center">15.1</td>
+<td style="text-align:center">17.2</td>
+</tr>
+<tr>
+<td style="text-align:center">versicolor</td>
+<td style="text-align:center">12.2</td>
+<td style="text-align:center">12.2</td>
+</tr>
+<tr>
+<td style="text-align:center">virginica</td>
+<td style="text-align:center">18.2</td>
+<td style="text-align:center">19.2</td>
+</tr>
+<tr>
+<td style="text-align:center">sentosa</td>
+<td style="text-align:center">15.1</td>
+<td style="text-align:center">17.2</td>
+</tr>
+<tr>
+<td style="text-align:center">versicolor</td>
+<td style="text-align:center">12.2</td>
+<td style="text-align:center">12.2</td>
+</tr>
+</tbody>
+</table>
+<h1 id="12--content">12- content</h1>
+<p><a href="#heading-1">1- Headings</a><br>
+<a href="#2--block-of-words">2- Block of words</a><br>
+<a href="#3--line-breaks">3- line breaks</a><br>
+<a href="#heading-4">4- combine two things</a><br>
+<a href="#5--face-of-text">5- Face of text</a><br>
+<a href="#6--bullet-point-lists">6- Bullet points/lists</a><br>
+<a href="#7--line-breaks-or-page-breaks">7- line braks or page breaks</a><br>
+<a href="#8--links-and-hyperlinks">8- Links and Hyper links </a><br>
+<a href="#9--images-and-figures-with-links">9- Images and Figures</a><br>
+<a href="#10--adding-code-or-code-block">10- Adding code or code block</a><br>
+<a href="#11--adding-tables">11- Adding Tables</a></p>
+<h1 id="13--extensions">13- extensions</h1>
+<p>smaple text</p>
+
+</body>
+</html>

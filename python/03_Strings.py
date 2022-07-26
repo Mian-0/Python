@@ -1,0 +1,6 @@
+#print("Hello My self")
+#print("LEarn")
+#print('Test For Single Quotes')
+#print("Test For Double Quotes")
+#print('''Test For Triple Quotes''')
+print( " What's up   ?" )
